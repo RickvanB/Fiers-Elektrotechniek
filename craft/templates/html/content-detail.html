@@ -1,0 +1,79 @@
+{% include 'viewmodels/partials/header.html' %}
+
+<section class="single-service">
+	<div class="container">
+		<div class="row">
+			<div class="sidebar sidebar-services col-xs-12 col-sm-12 col-md-3">
+				
+				<!-- Categories
+				============================================= -->
+				<div class="widget widget-categories">
+					<div class="widget-content">
+						<ul class="list-unstyled">
+							<li>
+								<a href="{{ servicesOverview.url }}">{{ servicesOverview.title }}</a>
+							</li>
+							{% for service in services %}
+								<li>
+									<a href="{{ service.url }}">{{ service.title }}</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+				
+				<!-- Download
+				============================================= -->
+				{#
+				<div class="widget widget-download">
+					<div class="widget-title">
+						<h3>Download Brochures</h3>
+					</div>
+					<div class="widget-content">
+						<div class="download download-pdf">
+							<a href="#">
+								<div class="download-desc">
+									<div class="download-desc-icon">
+										<img src="assets/images/sidebar/1.png" alt="icon"/>
+									</div>
+									<h4>Download.pdf</h4>
+								</div>
+								<div class="download-icon">
+									<i class="fa fa-download"></i>
+								</div>
+							</a>
+						</div>
+						<!-- .download-pdf end -->
+						
+						<div class="download download-doc">
+							<a href="#">
+								<div class="download-desc">
+									<div class="download-desc-icon">
+										<img src="assets/images/sidebar/2.png" alt="icon"/>
+									</div>
+									<h4>Download.doc</h4>
+								</div>
+								<div class="download-icon">
+									<i class="fa fa-download"></i>
+								</div>
+							</a>
+						</div>
+						<!-- .download-pdf end -->
+					</div>
+				</div>#}
+			</div>
+			<!-- .sidebar end -->
+			<div class="col-xs-12 col-sm-12 col-md-9">
+				<div class="row">
+					
+					{% include 'viewmodels/partials/neo/content-neo-detail.html' %}
+					
+				</div>
+				<!-- .row end -->
+			</div>
+			<!-- .col-md-9 end -->
+		</div>
+		<!-- .row end -->
+	</div>
+	<!-- .container end -->
+</section>

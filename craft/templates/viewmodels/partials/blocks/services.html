@@ -1,0 +1,10 @@
+{# SET THE VARIABLES #}
+
+{% set mainTitle = block.mainTitle %}
+{% set subtitle = block.subtitle %}
+{% set text = block.text %}
+{% set services = craft.entries.id(8).first() %}
+
+
+{# INCLUDE THE HTML #}
+{% include 'html/partials/blocks/services.html' %}

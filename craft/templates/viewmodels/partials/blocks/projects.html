@@ -1,0 +1,8 @@
+{# SET THE VARIABLES #}
+{% set mainTitle = block.mainTitle %}
+{% set subtitle = block.subtitle %}
+{% set projects = craft.entries.section('projects').order('postDate desc').limit(6) %}
+{% set projectOverview = craft.entries.id(5).first() %}
+
+{# INCLUDE THE HTML #}
+{% include 'html/partials/blocks/projects.html' %}

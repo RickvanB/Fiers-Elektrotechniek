@@ -1,0 +1,11 @@
+{# SET THE VARIABLES #}
+{# Set parameters for prev/next elements list #}
+{% set params = craft.entries.section('projects').order('title asc') %}
+
+{# Get the prev/next elements #}
+{% set prevEntry = entry.getPrev(params) %}
+{% set nextEntry = entry.getNext(params) %}
+
+
+{# INCLUDE THE HTML #}
+{% include 'html/project-detail.html' %}

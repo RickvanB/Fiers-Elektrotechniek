@@ -1,0 +1,14 @@
+{# SET THE VARIABLES #}
+
+{% set mainTitle = block.mainTitle %}
+{% set subtitle = block.subtitle %}
+{% set text = block.text|striptags('<strong><em><br>')|raw %}
+{% set signature = NULL %}
+{% set altTag = NULL %}
+{% if block.signature.first() != NULL %}
+	{% set signature = block.signature.first().getUrl('signature') %}
+	{% set altTag = block.signature.first().title %}
+{% endif %}
+
+{# INCLUDE THE HTML #}
+{% include 'html/partials/blocks/quote.html' %}

@@ -1,0 +1,25 @@
+{% if entry is defined %}
+	{% set contentNeo = entry.contentNeoDetail %}
+{% endif %}
+
+{% cache globally using key contentNeo.id ~ '-contentNeo: ' ~ craft.request.path %}
+	{% for block in contentNeo %}
+		
+		{# BIG TEXT BLOCK #}
+		{% if block.type == 'bigTextBlock' %}
+			{% include 'viewmodels/partials/blocks/bigtextblock.html' %}
+
+		{# SMALL TEXT BLOCK #}
+		{% elseif block.type == 'smallTextBlock' %}
+			{% include 'viewmodels/partials/blocks/smalltextblock.html' %}
+
+		{# CTA #}
+		{% elseif block.type == 'cta' %}
+			{% include 'viewmodels/partials/blocks/cta.html' %}
+
+
+		{% endif %}
+			
+
+	{% endfor %}
+{% endcache %}

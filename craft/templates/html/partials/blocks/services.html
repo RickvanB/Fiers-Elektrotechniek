@@ -1,0 +1,53 @@
+<section id="service-1" class="service service-1 bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
+				<div class="heading heading-2 text-center">
+					<div>
+						<p class="mb-0">{{ subtitle }}</p>
+						<h2>{{ mainTitle }}</h2>
+					</div>
+					<p class="mb-0 mt-md">{{ text|striptags('<strong><em><br>')|raw }}</p>
+				</div>
+				<!-- .heading end -->
+			</div>
+			<!-- .col-md-6 end -->
+		</div>
+		<!-- .row end -->
+		<div class="row">
+			<!-- Service Block #1 -->
+			{% for service in block.children %}
+				<div class="col-xs-12 col-sm-4 col-md-4 service-block">
+					{% if service.image.first() != NULL %}
+						<div class="service-img">
+							<img src="{{ service.image.first().getUrl('serviceImage') }}" alt="{{ service.image.first().title }}"/>
+						</div>
+					{% endif %}
+					<div class="service-content">
+						<!--<img src="assets/images/services/icons/i32/1.png" alt="icons"/>-->
+						<div class="service-desc">
+							<h4>{{ service.mainTitle }}</h4>
+							<p>{{ service.text }}</p>
+							{% if service.pageRelation.first() != NULL %}
+								<a class="read-more" href="{{ service.pageRelation.first().url }}"><i class="fa fa-plus"></i>
+									<span>Lees meer</span>
+								</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<!-- .row end -->
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 text-center">
+				<a class="btn btn-secondary mt-md" href="{{ services.url }}">Al onze diensten <i class="fa fa-plus ml-xs"></i></a>
+			</div>
+			<!-- .col-md-12 end -->
+		</div>
+		<!-- .row end -->
+	</div>
+	<!-- .container end -->
+</section>
+<div class="cleafix mb-150">
+</div>

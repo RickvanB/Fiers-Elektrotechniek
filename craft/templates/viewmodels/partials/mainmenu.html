@@ -1,0 +1,13 @@
+{# SET THE VARIABLES #}
+
+{# MAIN MENU #} 
+{% set menuItems = [] %}
+{% set contentEntryTypes = ['overview', 'detail', 'pageLinkExternalLink'] %}
+{% set pages = craft.entries.section('contentPages').type( contentEntryTypes ).level(1) %}
+{% set contentPages = menuItems|merge(pages) %}
+
+{% set searchOverviewUrl = craft.entries.section('searchOverview').first().url %}
+
+
+{# INCLUDE THE HTML #}
+{% include 'html/partials/mainmenu.html' %}

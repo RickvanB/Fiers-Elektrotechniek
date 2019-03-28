@@ -1,0 +1,143 @@
+{#
+ # Homepage template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "html/_master" %}
+
+{#----------------------
+  SET SEGMENTS
+------------------------#}
+{% set firstSegment  = craft.request.firstSegment %}
+{% set secondSegment = craft.request.getSegment(2) %}
+{% set thirdSegment  = craft.request.getSegment(3) %}
+{% set fourthSegment = craft.request.getSegment(4) %}
+{% set fifthSegment  = craft.request.getSegment(5) %}
+
+{# SET LOCALES #}
+
+{% set otherLocales  = craft.i18n.getSiteLocaleIds() %}
+{% set currentLocale = craft.locale %}
+{% set currentUrl    = craft.request.getUrl() %}
+
+{# SET URLS #}
+
+{% set baseUrl      = craft.config.environmentVariables.baseUrl %}
+{% set serverType   = craft.config.environmentVariables.serverType %}
+{% set siteProtocol = craft.config.environmentVariables.siteProtocol %}
+
+{#----------------------
+  DETERMINE VIEWMODEL
+------------------------#}
+{% set viewmodel = '' %}
+
+{# ENTRY #}
+{% if entry is defined %}
+  {% set sectionHandle = entry.section.handle %}
+
+  {# HOME #}
+  {% if sectionHandle == 'homepage' %}
+    {% set viewmodel = 'home' %}
+
+  {# PROJECT OVERVIEW #}
+  {% elseif sectionHandle == 'projectOverview' %}
+    {% set viewmodel = 'project-overview' %}
+
+  {# CONTENT PAGES #}
+  {% elseif entry.type == 'overview' or entry.type == 'detail' or entry.type == 'contentHidden' %}
+    {% set viewmodel = 'contentPages' %}
+
+  {# PROJECT DETAIL #}
+  {% elseif entry.type == 'projects' %}
+    {% set viewmodel = 'project-detail' %}
+
+  {# TESTIMONIALS #}
+  {% elseif sectionHandle == 'testimonialOverview' %}
+    {% set viewmodel = 'testimonial-overview' %}
+
+  {# SEARCH OVERVIEW #}
+  {% elseif sectionHandle == 'searchOverview' %}
+    {% set viewmodel = 'search-overview' %}
+
+  {# CONTACT #}
+  {% elseif sectionHandle == 'contact' %}
+    {% set viewmodel = 'contact' %}
+  
+  {% endif %}
+
+{# DYNAMIC ROUTES #}
+{% else %}
+    
+{% endif %}
+
+{#----------------------
+  SET THE TITLE
+------------------------#}
+{% set title = siteName %}
+{% if entry is defined and entry != NULL and entry.mainTitle is defined %}
+  {% set title = entry.mainTitle %}
+{% endif %}
+
+{#------------------
+  LOAD THE CONTENT
+--------------------#}
+{% block content %}
+
+  {# HOME #}
+  {% if viewmodel == 'home' %}
+    {% include 'viewmodels/home.html' %}
+
+  {# PROJECT OVERVIEW #}
+  {% elseif viewmodel == 'project-overview' %}
+    {% include 'viewmodels/project-overview.html' %}
+
+  {# PROJECT DETAIL #}
+  {% elseif viewmodel == 'project-detail' %}
+    {% include 'viewmodels/project-detail.html' %}
+
+  {# CONTENT PAGES #}
+  {% elseif viewmodel == 'contentPages' %}
+    {% include 'viewmodels/content.html' %}
+
+  {# TESTIMONIAL OVERVIEW #}
+  {% elseif viewmodel == 'testimonial-overview' %}
+    {% include 'viewmodels/testimonial-overview.html' %}
+
+  {# SEARCH OVERVIEW #}
+  {% elseif viewmodel == 'search-overview' %}
+    {% include 'viewmodels/search-overview.html' %}
+
+  {# CONTACT #}
+  {% elseif viewmodel == 'contact' %}
+    {% include 'viewmodels/contact.html' %}
+
+  {% endif %}
+{% endblock %}
+
+{#------------------
+  LOAD Menu
+--------------------#}
+{% block mainmenu %}
+  {% include 'viewmodels/partials/mainmenu.html' %}
+{% endblock %}
+
+{#------------------
+  LOAD Footer
+--------------------#}
+{% block footer %}
+  {% include 'viewmodels/partials/footer.html' %}
+{% endblock %}

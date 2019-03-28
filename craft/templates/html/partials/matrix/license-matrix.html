@@ -1,0 +1,12 @@
+{% for license in licenseMatrix %}
+	<div class="col-xs-12 col-sm-6 col-md-3">
+		<div class="feature feature-2 mb-30-xs mb-30-sm">
+			<div class="feature-icon">
+				{% for category in license.licenseIcon %}
+					<i class="lnr {{ category.subtitle }} font-40 color-theme"></i>
+				{% endfor %}
+			</div>
+			<h4 class="text-uppercase font-16">{{ license.LicenseTitle }}</h4>
+		</div>
+	</div>
+{% endfor %}

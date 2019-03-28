@@ -1,0 +1,114 @@
+{% include 'viewmodels/partials/header.html' %}
+
+<!-- Contact
+============================================= -->
+<section id="contact" class="contact">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="heading heading-4">
+					<div class="heading-right">
+						<p class="mb-0">{{ subtitle }}</p>
+						<h2>{{ mainTitle }}</h2>
+					</div>
+				</div>
+				<!-- .heading end -->
+			</div>
+			<!-- .col-md-12 end -->
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-4 widgets-contact mb-60-xs">
+						<div class="widget">
+							<div class="widget-contact-icon pull-left">
+								<i class="lnr lnr-map"></i>
+							</div>
+							<div class="widget-contact-info">
+								<p class="text-capitalize">Bezoekadres</p>
+								<p class="text-capitalize font-heading">{{ location }}</p>
+							</div>
+						</div>
+						<!-- .widget end -->
+						<div class="clearfix">
+						</div>
+						<div class="widget">
+							<div class="widget-contact-icon pull-left">
+								<i class="lnr lnr-envelope"></i>
+							</div>
+							<div class="widget-contact-info">
+								<p class="text-capitalize ">Emailadres</p>
+								<p class="font-heading">{{ email|lower }}</p>
+							</div>
+						</div>
+						<!-- .widget end -->
+						<div class="clearfix">
+						</div>
+						<div class="widget">
+							<div class="widget-contact-icon pull-left">
+								<i class="lnr lnr-phone"></i>
+							</div>
+							<div class="widget-contact-info">
+								<p class="text-capitalize">Telefoonnummer</p>
+								<p class="text-capitalize font-heading">{{ telephone }}</p>
+							</div>
+						</div>
+						<!-- .widget end -->
+					</div>
+					<!-- .col-md-4 end -->
+					<div class="col-xs-12 col-sm-12 col-md-8">
+						<div class="row">
+							<form method="post" action="" accept-charset="UTF-8" class="text-left">
+		                        {{ getCsrfInput() }}
+		                        <input type="hidden" name="action" value="contactForm/sendMessage">
+		                        <input type="hidden" name="redirect" value="{{ currentUrl }}">
+		                        <div class="col-md-6">
+		                            <label>Uw naam:</label>
+		                            <input type="text" class="form-control mb-30" name="fromName" required />
+		                        </div>
+		                        <div class="col-md-6">
+		                            <label>Email adres:</label>
+		                            <input type="email" class="form-control mb-30" name="fromEmail" required />
+		                        </div>
+		                        <div class="col-md-6">
+		                            <label>Telefoonnummer:</label>
+		                            <input type="text" class="form-control mb-30" name="fromPhone" required>
+		                        </div>
+		                        <div class="col-md-6">
+		                            <label>Onderwerp:</label>
+		                            <input type="text" class="form-control mb-30" name="subject" required>
+		                        </div>
+		                        <div class="col-md-6">
+		                            <label>Bericht:</label>
+		                            <textarea rows="6" class="form-control mb-30" name="message" required></textarea>
+		                        </div>
+		                        <div class="col-md-6">
+									<div class="g-recaptcha" data-sitekey="6LfIq38UAAAAAMHH2XITzQP__2fxgGb2VksNnQ1k" required></div>
+		                        </div>
+		                        <div class="col-md-12">
+		                            <button type="submit" class="btn btn-primary btn-black btn-block">Verzenden</button>
+		                        </div>
+                    		</form>
+						</div>
+					</div>
+					<!-- .col-md-8 end -->
+				</div>
+				<!-- .row end -->
+			</div>
+			<!-- .col-md-12 end -->
+		</div>
+		<!-- .row end -->
+	</div>
+	<!-- .container end -->
+</section>
+
+<!-- Google Maps
+============================================= -->
+<section class="google-maps pb-0 pt-0">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 pr-0 pl-0">
+				<div id="gmaps" style="width:100%;height:240px;">
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

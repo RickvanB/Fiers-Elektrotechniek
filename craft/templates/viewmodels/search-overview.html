@@ -1,0 +1,18 @@
+{# SET THE VARIABLES #}
+
+{% set pageUrl = entry.url %}
+{% set searchParam = craft.request.getParam('s') %}
+
+{% set results = NULL %}
+{% if searchParam != NULL %}
+
+  {% set searchQuery = '*' ~ searchParam ~ '*' %}
+  {% set results = craft.entries({
+    search: searchQuery,
+    order: 'score'
+    }) %}
+
+{% endif %}
+
+{# INCLUDE THE HTML #}
+{% include 'html/search-overview.html' %}

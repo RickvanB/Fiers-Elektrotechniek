@@ -1,0 +1,13 @@
+{# SET THE VARIABLES #}
+
+{% set mainTitle = entry.mainTitle %}
+{% set headerImage = null %}
+{% set altTag = NULL %}
+{% if entry.headerImage.first() != NULL %}
+	{% set headerImage = entry.headerImage.first() %}
+	{% set transformedImage = craft.imager.transformImage(headerImage, { width: 1899, height: 470, ratio: 16/9, mode: 'fit' }) %}
+	{% set altTag = entry.headerImage.first().title %}
+{% endif %}
+
+{# INCLUDE THE HTML #}
+{% include 'html/partials/header.html' %}

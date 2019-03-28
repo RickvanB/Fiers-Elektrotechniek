@@ -1,0 +1,146 @@
+{% minify %}
+<!doctype html>
+<html lang="{{ currentLocale }}">
+<head>
+  <!-- Document Meta
+  ============================================= -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!--IE Compatibility Meta-->
+  <meta name="author" content="wplly" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="{{ baseUrl }}/assets/images/favicon/favicon.ico" rel="icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ baseUrl }}/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ baseUrl }}/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ baseUrl }}/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="{{ baseUrl }}/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="{{ baseUrl }}/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+
+  <!-- Fonts
+  ============================================= -->
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:100,200,300,400,500,600,700,800%7CDroid+Serif:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+  <!-- Stylesheets
+  ============================================= -->
+  <link href="{{ baseUrl }}/assets/css/external.css" rel="stylesheet">
+  <!-- Extrnal CSS -->
+  <link href="{{ baseUrl }}/assets/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Boostrap Core CSS -->
+  <link href="{{ baseUrl }}/assets/css/style.css?v4" rel="stylesheet">
+  <!-- Style CSS -->
+
+  <!-- RS5.0 Main Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="{{ baseUrl }}/assets/revolution/css/settings.css">
+  <link rel="stylesheet" type="text/css" href="{{ baseUrl }}/assets/revolution/css/layers.css">
+  <link rel="stylesheet" type="text/css" href="{{ baseUrl }}/assets/revolution/css/navigation.css"> 
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+  <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+      <![endif]-->
+
+  {% if entry is defined %}
+      {% set seomaticMeta = {
+        seoTitle: entry.seo.seoTitle,
+        seoDescription: entry.seo.seoDescription,
+        seoKeywords: entry.seo.seoKeywords,
+        seoImage: entry.seo.seoImage,
+        canonicalUrl: ((seoCanonical is defined) ? seoCanonical : siteProtocol ~ ':' ~ entry.url)
+    } %}
+  {% elseif category is defined %}
+    {% set seomaticMeta = {
+        seoTitle: category.seo.seoTitle,
+        seoDescription: category.seo.seoDescription,
+        seoKeywords: category.seo.seoKeywords,
+        seoImage: category.seo.seoImage,
+        canonicalUrl: ((seoCanonical is defined) ? seoCanonical : siteProtocol ~ ':' ~ category.url)
+    } %}
+  {% endif %}
+
+  {# SEOMATIC #}
+  {% hook 'seomaticRender' %}
+</head>
+<body>
+    
+    {% block mainmenu %} {% endblock %}
+    <div class="main-container">
+      {% block content %} {% endblock %}
+      {% block footer %} {% endblock %}
+    </div>
+
+  <!-- Footer Scripts
+  ============================================= -->
+  <script src="{{ baseUrl }}/assets/js/jquery-2.1.1.min.js"></script>
+  <script src="{{ baseUrl }}/assets/js/plugins.js?v=1.0.0"></script>
+  <script src="{{ baseUrl }}/assets/js/functions.js?v=1.2.0"></script>
+  <!-- RS5.0 Core JS Files -->
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
+
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/extensions/revolution.extension.video.min.js"></script>
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+  <script type="text/javascript" src="{{ baseUrl }}/assets/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+  {% if firstSegment == 'contact' %}
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script>
+      function initMap() {
+        var location = {lat: 51.3772712, lng: 5.204657};
+        var map = new google.maps.Map(document.getElementById('gmaps'), {
+          zoom: 15,
+          center: location
+        });
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUcnJD3BLyqGP9AVOtB3Kp_QRzVG8Vac4&callback=initMap"></script>
+  {% endif %}
+  <script type="text/javascript"> 
+  jQuery(document).ready(function() { 
+     jQuery("#slider1").revolution({
+        sliderType:"standard",
+        sliderLayout:"auto",
+        delay:6000,
+      disableProgressBar:"on",
+      spinner:"off",
+        navigation: {
+      keyboardNavigation:"off",
+      keyboard_direction: "horizontal",
+      mouseScrollNavigation:"off",
+      onHoverStop:"off",
+      arrows: {
+        style:"arrow",
+        enable:true,
+        hide_onmobile:true,
+        hide_onleave:false,
+        tmp:'',
+        left: {
+          h_align:"left",
+          v_align:"bottom",
+          h_offset:110,
+          v_offset:40
+        },
+        right: {
+          h_align:"left",
+          v_align:"bottom",
+          h_offset:150,
+          v_offset:40
+        }
+      }
+    }, 
+        gridwidth:1230,
+        gridheight:800 ,
+      
+      }); 
+  }); 
+  </script>
+</html>
+{% endminify %}

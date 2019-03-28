@@ -1,0 +1,178 @@
+{% cache globally %}
+	<footer id="footer" class="footer-1">
+		
+		<!-- Widget Section
+		============================================= -->
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 widgets-links">
+					<div class="col-xs-12 col-sm-12 col-md-4 widget-about text-center-xs mb-30-xs">
+						<div class="widget-about-info">
+							<h5 class="text-capitalize text-white">{{ footer.mainTitle }}</h5>
+							<p class="mb-0">{{ footer.text }}</p>
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-3 widget-navigation text-center-xs mb-30-xs">
+						<h5 class="text-capitalize text-white">navigatie</h5>
+						<div class="row">
+							{% set cols = 2 %}
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<ul class="list-unstyled text-capitalize">
+									{% for menuItem in contentPages %}
+
+										{% set link = menuItem.url %}
+			                            {% if menuItem.linkUrl is defined and menuItem.linkUrl != NULL %}
+			                                {% set link = menuItem.linkUrl %}
+			                            {% elseif menuItem.pageRelation is defined and menuItem.pageRelation.first() != NULL %}
+			                                {% set link = menuItem.pageRelation.first().url %}
+			                            {% elseif menuItem.document is defined and menuItem.document.first() != NULL %}
+			                                {% set document = menuItem.document.first() %}
+			                                {% set link = document.getUrl() %}
+			                            {% endif %}
+			                            
+			                            {% if menuItem.linkTitle is defined and menuItem.linkTitle != NULL %}
+			                                {% set title = menuItem.linkTitle %}
+			                            {% else %}
+			                                {% set title = menuItem.title %}
+			                            {% endif %}
+
+									  	{% if loop.index0 % cols == 0 %}
+											<li>
+												<a href="{{ link }}">{{ title }}</a>
+											</li>
+									  	{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+
+							<div class="col-xs-6 col-sm-6 col-md-6">
+								<ul class="list-unstyled text-capitalize">
+									{% for menuItem in contentPages %}
+
+										{% set link = menuItem.url %}
+			                            {% if menuItem.linkUrl is defined and menuItem.linkUrl != NULL %}
+			                                {% set link = menuItem.linkUrl %}
+			                            {% elseif menuItem.pageRelation is defined and menuItem.pageRelation.first() != NULL %}
+			                                {% set link = menuItem.pageRelation.first().url %}
+			                            {% elseif menuItem.document is defined and menuItem.document.first() != NULL %}
+			                                {% set document = menuItem.document.first() %}
+			                                {% set link = document.getUrl() %}
+			                            {% endif %}
+			                            
+			                            {% if menuItem.linkTitle is defined and menuItem.linkTitle != NULL %}
+			                                {% set title = menuItem.linkTitle %}
+			                            {% else %}
+			                                {% set title = menuItem.title %}
+			                            {% endif %}
+
+										{% if (loop.index0 % cols == cols - 1 or loop.last) %}
+											<li>
+												<a href="{{ link }}">{{ title }}</a>
+											</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+
+						</div>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-5 widget-services text-center-xs">
+						<h5 class="text-capitalize text-white">diensten</h5>
+						<div class="row">
+							{% set cols2 = 2 %}
+							<div class="col-xs-4 col-sm-4 col-md-4">
+								<ul class="list-unstyled text-capitalize">
+									{% for service in services %}
+										{% if loop.index0 % cols2 == 0 %}
+											<li>
+												<a href="{{ service.url }}">{{ service.title }}</a>
+											</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+							{#
+							<div class="col-xs-4 col-sm-4 col-md-4">
+								<ul class="list-unstyled text-capitalize">
+									{% for service in services %}
+										{% if (loop.index0 % cols2 == cols2 - 1 or loop.last) %}
+											<li>
+												<a href="{{ service.url }}">{{ service.title }}</a>
+											</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+							#}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Social bar
+		============================================= -->
+		<div class="widget-social">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6 mb-30-xs mb-30-sm">
+						<div class="widget-social-info pull-left text-capitalize pull-none-xs mb-15-xs">
+							<p class="mb-0">Volg ons<br>
+								op onze sociale netwerken</p>
+						</div>
+						<div class="widget-social-icon pull-right text-right pull-none-xs">
+							{% if footer.subtitle != NULL %}
+								<a href="{{ footer.subtitle }}" target="_blank">
+									<i class="fa fa-facebook"></i><i class="fa fa-facebook"></i>
+								</a>
+							{% endif %}
+							{% if footer.mainTitle2 != NULL %}
+								<a href="{{ footer.mainTitle2 }}" target="_blank">
+									<i class="fa fa-twitter"></i><i class="fa fa-twitter"></i>
+								</a>
+							{% endif %}
+							{% if footer.mainTitle3 != NULL %}
+								<a href="{{ footer.mainTitle3 }}" target="_blank">
+									<i class="fa fa-instagram"></i><i class="fa fa-instagram"></i>
+								</a>
+							{% endif %}
+							{% if footer.linkTitle != NULL %}
+								<a href="{{ footer.linkTitle }}" target="_blank">
+									<i class="fa fa-linkedin"></i><i class="fa fa-linkedin"></i>
+								</a>
+							{% endif %}
+							{#
+							<a href="#">
+								<i class="fa fa-google-plus"></i><i class="fa fa-google-plus"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-linkedin"></i><i class="fa fa-linkedin"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-vimeo-square"></i><i class="fa fa-vimeo-square"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-pinterest"></i><i class="fa fa-pinterest"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-flickr"></i><i class="fa fa-flickr"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-rss"></i><i class="fa fa-rss"></i>
+							</a>#}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Copyrights
+		============================================= -->
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 copyrights text-center">
+					<p class="text-capitalize">© {{ "now"|date('Y') }} - Fiers Elektrotechniek.</p>
+					<p class="text-capitalize">Craft CMS - Website gebouwd door Rick van Beek</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+{% endcache %}

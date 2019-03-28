@@ -1,0 +1,30 @@
+<section id="shortcode-2" class="shortcode-2 about-home text-center-xs text-center-sm">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-7 col-md-8 col-md-offset-2">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12">
+						<div class="heading heading-1 mb-0">
+							<p>{{ subtitle }}</p>
+							<h2>{{ mainTitle }}</h2>
+						</div>
+						<!-- .heading end -->
+					</div>
+					<!-- .col-md-12 end -->
+					<div class="col-xs-12 col-xs-12 col-md-12 mb-50">
+						{{ text }}
+					</div>
+					<!-- .col-md-12 end -->
+					{% if block.LicenseMatrix != NULL %}
+						{% include 'viewmodels/partials/matrix/license-matrix.html' %}
+					{% endif %}
+					<!-- .col-md-3 end -->
+				</div>
+				<!-- .row end -->
+			</div>
+			<!-- .col-md-8 end -->
+		</div>
+		<!-- .row end -->
+	</div>
+	<!-- .container end -->
+</section>

@@ -1,0 +1,63 @@
+{#
+ # 404 template
+ # ------------
+ #
+ # This template is loaded whenever Craft cannot figure out how to
+ # respond to an incoming request. No setup is involved to get your
+ # 404 page working; you just need to call it 404.html and put it
+ # at the root of your craft/templates/ folder.
+ #
+ # You can also create 400.html, 403.html, 500.html, and 503.html
+ # templates if you’d like. If Craft can’t find an error template
+ # to match the error code, it will just use the one in
+ # craft/app/templates/ instead.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+{% extends "html/_master" %}
+
+{#----------------------
+  SET SEGMENTS
+------------------------#}
+{% set firstSegment  = craft.request.firstSegment %}
+{% set secondSegment = craft.request.getSegment(2) %}
+{% set thirdSegment  = craft.request.getSegment(3) %}
+{% set fourthSegment = craft.request.getSegment(4) %}
+
+{#----------------------
+  LOCALES
+------------------------#}
+{% set otherLocales  = craft.i18n.getSiteLocaleIds() %}
+{% set currentLocale = craft.locale %}
+{% set currentUrl    = craft.request.getUrl() %}
+
+{% set baseUrl      = craft.config.environmentVariables.baseUrl %}
+{% set serverType   = craft.config.environmentVariables.serverType %}
+{% set siteProtocol = craft.config.environmentVariables.siteProtocol %}
+
+{#----------------------
+  DETERMINE VIEWMODEL
+------------------------#}
+{% set viewmodel = '' %}
+
+{#------------------
+  LOAD THE CONTENT
+--------------------#}
+{% block content %}
+  {% include 'viewmodels/404.html' %}
+{% endblock %}
+
+{#------------------
+  LOAD Menu
+--------------------#}
+{% block mainmenu %}
+  {% include 'viewmodels/partials/mainmenu.html' %}
+{% endblock %}
+
+{#------------------
+  LOAD footer
+--------------------#}
+{% block footer %}
+  {% include 'viewmodels/partials/footer.html' %}
+{% endblock %}

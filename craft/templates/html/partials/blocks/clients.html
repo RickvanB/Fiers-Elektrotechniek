@@ -1,0 +1,31 @@
+<section id="clients" class="shortcode-9 pb-0">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="heading heading-2 text-center">
+					<div>
+						<p class="mb-0">{{ subtitle }}</p>
+						<h2>{{ mainTitle }}</h2>
+					</div>
+				</div>
+				<!-- .heading end -->
+			</div>
+			<!-- .col-md-12 end -->
+		</div>
+		<!-- .row end -->
+		<div class="row">
+
+			{% for client in block.children %}
+				<!-- Client Item -->
+				<div class="col-xs-12 col-sm-4 col-md-2">
+					<div class="brand">
+						<img class="img-responsive center-block" src="{{ client.image.first().getUrl('client') }}" alt="{{ client.image.first().title }}">
+					</div>
+				</div>
+			{% endfor %}
+			<!-- .col-md-2 end -->
+		</div>
+		<!-- .row End -->
+	</div>
+	<!-- .container end -->
+</section>

@@ -1,0 +1,8 @@
+{# SET THE VARIABLES #}
+
+{% set mainTitle = block.mainTitle %}
+{% set subtitle = block.subtitle %}
+{% set testimonials = craft.entries.section('testimonials') %}
+
+{# INCLUDE THE HTML #}
+{% include 'html/partials/blocks/testimonials.html' %}

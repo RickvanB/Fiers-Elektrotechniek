@@ -1,0 +1,8 @@
+{# SET THE VARIABLES #}
+
+{% set testimonials = craft.entries.section('testimonials') %}
+{% set mainTitle = entry.mainTitle2 %}
+{% set subtitle = entry.subtitle %}
+
+{# INCLUDE THE HTML #}
+{% include 'html/testimonial-overview.html' %}

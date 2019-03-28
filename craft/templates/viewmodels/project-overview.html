@@ -1,0 +1,15 @@
+{# SET THE VARIABLES #}
+
+{% set projectGrid = entry.projectGrid %}
+{% set projects = craft.entries.section('projects') %}
+{% set mainTitle = entry.mainTitle %}
+{% set subtitle = entry.subtitle %}
+
+{# INCLUDE THE HTML #}
+{% if projectGrid == '2columns' %}
+	{% include 'html/project-overview-2columns.html' %}
+{% elseif projectGrid == '3columns'  %}
+	{% include 'html/project-overview-3columns.html' %}
+{% elseif projectGrid == '4columns' %}
+	{% include 'html/project-overview-4columns.html' %}
+{% endif %}

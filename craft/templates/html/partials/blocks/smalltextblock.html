@@ -1,0 +1,10 @@
+{% for textBlock in block.children %}
+	<div class="col-xs-12 col-sm-12 col-md-6">
+		<div class="service-title">
+			<h3>{{ textBlock.mainTitle }}</h3>
+		</div>
+		<div class="service-content">
+			{{ textBlock.text }}
+		</div>
+	</div>
+{% endfor %}

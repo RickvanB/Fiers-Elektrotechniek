@@ -1,0 +1,45 @@
+{% if entry is defined %}
+	{% set contentNeo = entry.contentNeo %}
+{% endif %}
+
+{% cache globally using key contentNeo.id ~ '-contentNeo: ' ~ craft.request.path %}
+	{% for block in contentNeo %}
+		
+		{# TEXT #}
+		{% if block.type == 'text' %}
+			{% include 'viewmodels/partials/blocks/text.html' %}
+
+		{# SERVICES #}
+		{% elseif block.type == 'services' %}
+			{% include 'viewmodels/partials/blocks/services.html' %}
+
+		{# PROJECTS #}
+		{% elseif block.type == 'projects' %}
+			{% include 'viewmodels/partials/blocks/projects.html' %}
+
+		{# TESTIMONIALS #}
+		{% elseif block.type == 'testimonials' %}
+			{% include 'viewmodels/partials/blocks/testimonials.html' %}
+
+		{# CLIENTS #}
+		{% elseif block.type == 'clients' %}
+			{% include 'viewmodels/partials/blocks/clients.html' %}
+		
+		{# QUOTE #}
+		{% elseif block.type == 'quote' %}
+			{% include 'viewmodels/partials/blocks/quote.html' %}	
+		
+		{# WHY US #}
+		{% elseif block.type == 'whyUs' %}
+			{% include 'viewmodels/partials/blocks/why-us.html' %}
+
+		{# CTA #}
+		{% elseif block.type == 'cta' %}
+			{% include 'viewmodels/partials/blocks/cta.html' %}
+
+
+		{% endif %}
+			
+
+	{% endfor %}
+{% endcache %}

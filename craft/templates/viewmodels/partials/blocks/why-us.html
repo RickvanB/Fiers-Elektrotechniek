@@ -1,0 +1,8 @@
+{# SET THE VARIABLES #}
+{% set mainTitle = block.mainTitle %}
+{% set subtitle = block.subtitle %}
+{% set testimonials = craft.entries.section('testimonials').orderby('postDate desc').limit(3) %}
+
+
+{# INCLUDE THE HTML #}
+{% include 'html/partials/blocks/why-us.html' %}

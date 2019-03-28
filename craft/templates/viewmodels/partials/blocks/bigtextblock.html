@@ -1,0 +1,14 @@
+{# SET THE VARIABLES #}
+
+{% set mainTitle = block.mainTitle %}
+{% set text = block.text %}
+{% set image = NULL %}
+{% set altTag = NULL %}
+
+{% if block.image.first() != NULL %}
+	{% set image = block.image.first().getUrl('textImage') %}
+	{% set altTag = block.image.first().title %}
+{% endif %}
+
+{# INCLUDE THE HTML #}
+{% include 'html/partials/blocks/bigtextblock.html' %}

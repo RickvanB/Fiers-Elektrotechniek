@@ -1,0 +1,81 @@
+{% include 'viewmodels/partials/header.html' %}
+
+<section id="projects" class="projects-grid projects-2col">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="heading heading-3 mb-0 text-center">
+					<div>
+						<p class="mb-0">{{ subtitle }}</p>
+						<h2>{{ mainTitle }}</h2>
+					</div>
+				</div>
+				<!-- .heading end -->
+			</div>
+			<!-- .col-md-12 end -->
+		</div>
+		<!-- .row end -->
+		<!--
+		<div class="row">
+			
+			
+			<div class="col-xs-12 col-sm-12 col-md-12 projects-filter">
+				<ul class="list-inline">
+					<li>
+						<a class="active-filter" href="#" data-filter="*">All Projects</a>
+					</li>
+					<li>
+						<a href="#" data-filter=".interior">Interior</a>
+					</li>
+					<li>
+						<a href="#" data-filter=".renovation">Renovation</a>
+					</li>
+					<li>
+						<a href="#" data-filter=".architecture">Architecture</a>
+					</li>
+					<li>
+						<a href="#" data-filter=".landscaping">Landscaping</a>
+					</li>
+					<li>
+						<a href="#" data-filter=".gardening">Gardening</a>
+					</li>
+				</ul>
+			</div>
+			
+		</div>-->
+		<!-- .row end -->
+		
+		<!-- Projects Item
+		============================================= -->
+		<div id="projects-all" class="row">
+			
+			<!-- Project Item -->
+			{% cache %}
+				{% for project in projects %}
+					<div class="col-xs-12 col-sm-6 col-md-3 project-item">
+						<div class="project-img">
+							<img class="img-responsive" src="{{ project.image.first().getUrl('project4Columns') }}" alt="{{ project.image.first().title }}"/>
+							<div class="project-hover">
+								<div class="project-meta">
+									<h4>
+										<a href="{{ project.url }}">{{ project.mainTitle }}</a>
+									</h4>
+								</div>
+								<div class="project-zoom">
+									<a class="img-popup" href="{{ project.image.first().getUrl('project4Columns') }}" title="{{ project.mainTitle }}"><i class="fa fa-plus"></i></a>
+								</div>
+							</div>
+							<!-- .project-hover end -->
+						</div>
+						<!-- .project-img end -->
+						
+					</div>
+				{% endfor %}
+			{% endcache %}
+			<!-- .project-item end -->
+		</div>
+		<!-- .row end -->
+	</div>
+	<!-- .container end -->
+	
+</section>

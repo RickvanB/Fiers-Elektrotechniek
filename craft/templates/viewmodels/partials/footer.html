@@ -1,0 +1,16 @@
+{# SET THE VARIABLES #}
+
+{% set servicesOverview = craft.entries.id(8).first() %}
+{% set services = craft.entries({
+    'section' : 'contentPages',
+    'level' : 2,
+    'descendantOf' : servicesOverview.id
+}) %}
+
+{% set menuItems = [] %}
+{% set contentEntryTypes = ['overview', 'detail', 'pageLinkExternalLink'] %}
+{% set pages = craft.entries.section('contentPages').type( contentEntryTypes ).level(1) %}
+{% set contentPages = menuItems|merge(pages) %}
+
+{# INCLUDE THE HTML #}
+{% include 'html/partials/footer.html' %}

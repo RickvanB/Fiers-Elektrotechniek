@@ -1,0 +1,98 @@
+{% cache globally %}
+	<header id="navbar-spy" class="transparent-header">
+		<nav id="primary-menu" class="navbar navbar-fixed-top style-1">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					</button>
+					<a class="logo" href="{{ siteUrl }}">
+						<img src="{{ baseUrl }}/assets/images/logo/logo_fiers.png" alt="Logo Fiers Elektrotechniek">
+					</a>
+				</div>
+				
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-left">
+						{% for menuItem in contentPages %}
+							
+							{% set link = menuItem.url %}
+                            {% if menuItem.linkUrl is defined and menuItem.linkUrl != NULL %}
+                                {% set link = menuItem.linkUrl %}
+                            {% elseif menuItem.pageRelation is defined and menuItem.pageRelation.first() != NULL %}
+                                {% set link = menuItem.pageRelation.first().url %}
+                            {% elseif menuItem.document is defined and menuItem.document.first() != NULL %}
+                                {% set document = menuItem.document.first() %}
+                                {% set link = document.getUrl() %}
+                            {% endif %}
+                            
+                            {% if menuItem.linkTitle is defined and menuItem.linkTitle != NULL %}
+                                {% set title = menuItem.linkTitle %}
+                            {% else %}
+                                {% set title = menuItem.title %}
+                            {% endif %}
+
+							
+							<li class="has-dropdown {% if menuItem.slug == firstSegment %} active {% endif %}">
+								<a href="{{ link }}" {#data-toggle="dropdown" class="dropdown-toggle"#}>{{ title }}</a>
+								{#
+								{% if menuItem.hasDescendants %}
+									<ul class="dropdown-menu">
+
+										{% for subMenuItem in menuItem.getDescendants(1) %}
+
+											{% set subLink = subMenuItem.url %}
+	                                        {% if subMenuItem.linkUrl is defined and subMenuItem.linkUrl != NULL %}
+	                                          {% set subLink = subMenuItem.linkUrl %}
+	                                        {% elseif subMenuItem.pageRelation is defined and subMenuItem.pageRelation.first() != NULL %}
+	                                          {% set subLink = subMenuItem.pageRelation.first().url %}
+	                                        {% elseif subMenuItem.document is defined and subMenuItem.document.first() != NULL %}
+	                                            {% set document = subMenuItem.document.first() %}
+	                                            {% set link = document.getUrl() %}
+	                                        {% endif %}
+	                                        {% if subMenuItem.linkTitle is defined and subMenuItem.linkTitle != NULL %}
+	                                          {% set subTitle = subMenuItem.linkTitle %}
+	                                        {% else %}
+	                                          {% set subTitle = subMenuItem.title %}
+	                                        {% endif %}
+
+											<li>
+												<a href="{{ subLink }}">{{ subTitle }}</a>
+											</li>
+										{% endfor %}
+									</ul>
+								{% endif %}
+								#}
+							</li>
+						{% endfor %}
+					</ul>
+					
+					<!-- Mod-->
+					<div class="module module-search pull-left">
+						<div class="search-icon">
+							<i class="fa fa-search"></i>
+							<span class="title">search</span>
+						</div>
+						<div class="search-box">
+							<form method="GET" class="search-form" action="{{ searchOverviewUrl }}">
+								<div class="input-group">
+									<input type="text" class="form-control" name="s" placeholder="Type hier je zoekopdracht">
+									<span class="input-group-btn">
+									<button class="btn" type="button"><i class="fa fa-search"></i></button>
+									</span>
+								</div>
+								<!-- /input-group -->
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+		</nav>
+	</header>
+{% endcache %}

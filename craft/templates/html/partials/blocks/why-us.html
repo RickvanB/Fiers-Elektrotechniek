@@ -1,0 +1,68 @@
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-6">
+						<div class="heading heading-4">
+							<div class="heading-bg heading-right">
+								<p class="mb-0">{{ subtitle }}</p>
+								<h2>{{ mainTitle }}</h2>
+							</div>
+						</div>
+						<!-- .heading end -->
+					</div>
+				</div>
+			</div>
+			<!-- .col-md-12 end -->
+			<div class="col-xs-12 col-sm-12 col-md-6">
+				<div class="panel-group accordion" id="accordion02" role="tablist" aria-multiselectable="true">
+					
+					{% for reason in block.children %}
+						<div class="panel panel-default">
+							<div class="panel-heading" role="tab" id="{{ loop.index }}">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" role="button" data-toggle="collapse" data-parent="#accordion02" href="#collapse02-1" aria-expanded="true" aria-controls="collapse02-1">{{ reason.mainTitle }}</a>
+									<span class="icon"></span>
+								</h4>
+							</div>
+							<div id="collapse02-1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{ loop.index }}">
+								<div class="panel-body">
+									{{ reason.text }}
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+					
+				</div>
+				<!-- End .Accordion-->
+			</div>
+			<!-- .col-md-6 end -->
+			<div class="col-xs-12 col-sm-12 col-md-6">
+				<div id="testimonial-oc-5"  class="testimonial-slide testimonial testimonial-3">
+					
+					{% for testimonial in testimonials %}
+						<div class="testimonial-item">
+							<div class="testimonial-content">
+								<p>{{ testimonial.text|striptags('<strong><em><br>')|raw }}</p>
+								{% if testimonial.image.first() != NULL %}
+									<div class="testimonial-img">
+										<img src="{{ testimonial.image.first().getUrl('testimonial') }}" alt="{{ testimonial.image.first().title }}" />
+									</div>
+								{% endif %}
+							</div>
+							<div class="testimonial-meta">
+								<strong>{{ testimonial.mainTitle }}</strong>, {{ testimonial.subtitle }}
+							</div>
+						</div>
+					{% endfor %}
+					<!-- .testimonial-item end -->
+					
+				</div>
+			</div>
+			<!-- .col-md-6 end -->
+		</div>
+		<!-- .row end -->
+	</div>
+	<!-- .container end -->
+</section>

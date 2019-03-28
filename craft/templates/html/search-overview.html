@@ -1,0 +1,37 @@
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="text-uppercase">Resultaten voor &ldquo;{{ searchParam }}&rdquo;</h3>
+				<p>{{ results|length }}</span> resultaten gevonden</p>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="panel-group accordion" id="accordion02" role="tablist" aria-multiselectable="true">
+					
+					<!-- Search results -->
+					{% if results|length > 0 %}
+						{% for result in results %}
+							<div class="panel panel-default">
+								<div class="panel-heading" role="tab">
+									<h4 class="panel-title">
+										<a href="{{ result.url }}">{{ result.title }}</a> 
+									</h4>
+								</div>
+							</div>
+						{% endfor %}
+					{% else %}
+						<div class="panel panel-default">
+								<div class="panel-heading" role="tab">
+									<h4 class="panel-title">
+										<a class="accordion-toggle">Niet gevonden waar je naar zocht? Probeer het opnieuw of neem contact met ons op!</a> 
+									</h4>
+								</div>
+							</div>
+					{% endif %}
+					<!-- .panel end -->
+				</div>
+				<!-- End .Accordion-->
+			</div>
+		</div>
+	</div>
+</section>

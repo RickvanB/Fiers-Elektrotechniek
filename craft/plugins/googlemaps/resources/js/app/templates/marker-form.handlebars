@@ -1,0 +1,91 @@
+{{#not isSavedToMap}}
+	<h2>Add Marker</h2>
+{{/not}}
+
+{{#if isSavedToMap}}
+	<h2>Edit Marker</h2>
+{{/if}}
+
+<nav class="oh-google-map-tabs oh-google-map-clearfix oh-google-map-three-up">
+	<ul>
+		<li><a class="oh-google-map-tab-trigger active" href="#oh-location-tab">Location</a></li>
+		<li><a class="oh-google-map-tab-trigger" href="#oh-content-tab">Content</a></li>
+		<li><a class="oh-google-map-tab-trigger" href="#oh-options-tab">Options</a></li>
+	</ul>
+</nav>
+
+<div id="oh-location-tab" class="oh-google-map-clearfix oh-google-map-tab">
+
+	<div class="oh-google-map-row">
+		<div class="oh-google-map-column oh-google-map-large-8">
+			<p><b>Address:</b> <span class="address">{{address}}</span></p>
+			<p><b>Latitude:</b> <span class="lat">{{lat}}</span></p>
+			<p><b>Longitude:</b> <span class="lng">{{lng}}</span></p>
+
+			<a href="#" class="edit-location">Change Location</a>
+		</div>
+		<div class="oh-google-map-column oh-google-map-large-4">
+			<div class="oh-google-map-map-icon">
+				<label>Map Icon</label>
+				<span><img src="{{#if icon}}{{../icon}}{{/if}}{{#not icon}}http://mt.googleapis.com/vt/icon/name=icons/spotlight/spotlight-poi.png&scale=2{{/not}}" /></span>
+				<a href="#" class="change-icon">Change Icon</a>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div id="oh-content-tab" class="oh-google-map-clearfix oh-google-map-tab">
+	
+	<div class="oh-google-map-row">
+		<div class="oh-google-map-column oh-google-map-large-12">
+			<div class="oh-google-map-margin-bottom">
+				<label for="poly-title">Title</label>
+				<input type="text" name="title" id="poly-title" value="{{title}}" class="text fullwidth" />
+			</div>
+		</div>
+	</div>
+
+	<div class="oh-google-map-row">
+		<div class="oh-google-map-column oh-google-map-large-12">
+			<div class="oh-google-map-margin-bottom">
+				<label for="poly-title">Content</label>
+				<textarea name="content" id="poly-content" class="text fullwidth">{{content}}</textarea>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div id="oh-options-tab" class="oh-google-map-clearfix oh-google-map-tab">
+
+	<div class="oh-google-map-margin-bottom">
+
+		<b>Scaled Icon Size</b>
+		<p>Enter the scaled width and height of the icon to alter the size as it appears on the map.</p>
+
+		<div class="oh-google-map-row">
+			<div class="oh-google-map-column oh-google-map-large-6">
+				<label for="icon-width">Width</label>
+				<input type="text" name="scaledWidth" id="icon-width" value="{{scaledWidth}}" class="text fullwidth" />
+			</div>
+			<div class="oh-google-map-column oh-google-map-large-6">
+				<label for="icon-height">Height</label>
+				<input type="text" name="scaledHeight" id="icon-height" value="{{scaledHeight}}" class="text fullwidth" />
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<footer>
+	{{#not isSavedToMap}}
+		<button type="submit" class="btn submit">Save Marker</button>
+	{{/not}}
+
+	{{#if isSavedToMap}}
+		<button type="submit" class="btn submit">Save Changes</button>
+	{{/if}}
+	
+	<a href="#" class="cancel">Cancel</a>
+</footer>

@@ -1,0 +1,79 @@
+{% include 'viewmodels/partials/header.html' %}
+
+<section id="testimonials" class="testimonial testimonial-1 bg-gray">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="heading heading-3 text-center">
+					<div>
+						<p class="mb-0">{{ subtitle }}</p>
+						<h2>{{ mainTitle }}</h2>
+					</div>
+				</div>
+				<!-- .heading end -->
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div id="testimonial-oc" class="testimonial-carousel">
+					
+					<!-- testimonial item -->
+					{% cache %}
+						{% for testimonial in testimonials %}
+							<div class="testimonial-item">
+								<div class="testimonial-content">
+									{% if testimonial.image.first() != NULL %}
+										<div class="testimonial-img">
+											<i class="fa fa-quote-left"></i>
+											<img src="{{ testimonial.image.first().getUrl('testimonial') }}" alt="{{ testimonial.image.first().title }}"/>
+										</div>
+									{% endif %}
+									<p>{{ testimonial.text|striptags('<strong><em><br>')|raw }}</p>
+								</div>
+								<div class="testimonial-divider">
+								</div>
+								<div class="testimonial-meta">
+									<strong>{{ testimonial.title }}</strong>, {{ testimonial.subtitle }}
+								</div>
+							</div>
+						{% endfor %}
+					{% endcache %}
+					<!-- .testimonial-item end -->
+					
+				</div>
+			</div>
+			<!-- .col-md-12 end -->
+			
+		</div>
+		<div class="clearfix mb-60"></div>
+		<div class="heading heading-3">
+			<h2>Testimonial toevoegen</h2>
+		</div>
+		<!-- .row end -->
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+
+				<form method="post" accept-charset="UTF-8">
+				    {{ getCsrfInput() }}
+				    <input type="hidden" name="action" value="guestEntries/saveEntry">
+    				<input type="hidden" name="redirect" value="{{ currentUrl }}">
+				    <input type="hidden" name="sectionId" value="8">
+
+				    <label for="title">Naam</label>
+				    <input id="title" class="form-control mb-30" type="text" name="title">
+				    
+
+				    <label for="subtitle">Bedrijf</label>
+				    <input id="subtitle" class="form-control mb-30" type="text" name="fields[subtitle]">
+
+				    <label for="text">Tekst</label>
+				    <textarea id="text" class="form-control mb-30" name="fields[text]"></textarea>
+
+				    <input type="submit" id="submit-message" class="btn btn-primary btn-black btn-block" value="Toevoegen">
+				</form>
+			</div>
+		</div>
+
+
+	</div>
+	<!-- .container end -->
+	
+</section>

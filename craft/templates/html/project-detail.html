@@ -1,0 +1,73 @@
+{% include 'viewmodels/partials/header.html' %}
+
+<section class="single-project pb-0">
+	<div class="container">
+		<div class="row">
+			{% if entry.projectImages != NULL %}
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div id="project-carousel" class="project-carousel">
+						{% cache %}
+							{% for image in entry.projectImages %}
+
+								{% set transformedImage = craft.imager.transformImage(image, { width: 500, height: 480,mode: 'fit' }) %}
+								
+								<div class="item">
+									<img src="{{ transformedImage.url }}">
+								</div>
+							{% endfor %}
+						{% endcache %}
+					</div>
+					<!-- .project-carousel end -->
+					
+				</div>
+			{% endif %}
+			<div class="col-xs-12 col-sm-12 col-md-4 mb-30-xs">
+				<div class=" project-block">
+					<div class="project-title">
+						<h3>Project Beschrijving</h3>
+					</div>
+					<div class="project-desc">
+						<ul class="list-unstyled">
+							<li>Klant:
+								<span>{{ entry.client }}</span>
+							</li>
+							<li>Locatie:
+								<span>{{ entry.location }}</span>
+							</li>
+							<li>Project gestart:
+								<span>{{ entry.projectStarted }}</span>
+							</li>
+							<li>Project afgerond:
+								<span>{{ entry.projectCompleted }}</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- col-md-4 end -->
+			<div class="col-xs-12 col-sm-12 col-md-8">
+				<div class="project-title">
+					<h3>{{ entry.mainTitle2 }}</h3>
+				</div>
+				<div class="project-desc">
+					{{ entry.text }}
+				</div>
+			</div>
+			
+			<div class="col-xs-12 col-sm-12 col-md-12 pager">
+				{% if prevEntry %}
+					<div class="page-prev">
+						<a href="{{ prevEntry.url }}"><i class="fa fa-angle-left"></i></a>
+					</div>
+				{% endif %}
+				{% if nextEntry %}
+					<div class="page-next">
+						<a href="{{ nextEntry.url }}"><i class="fa fa-angle-right"></i></a>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+		<!-- .row end -->
+	</div>
+	<!-- .container end -->
+</section>

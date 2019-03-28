@@ -1,0 +1,29 @@
+<section class="bg-overlay bg-overlay-gradient pb-0">
+	{% if headerImage != NULL %}
+		<div class="bg-section" >
+			<img src="{{ transformedImage.url }}" alt="{{ altTag }}"/>
+		</div>
+	{% endif %}
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+				<div class="page-title title-3 text-center">
+					{% if mainTitle != NULL %}
+						<h2>{{ mainTitle }}</h2>
+					{% endif %}
+					<!--
+					<ol class="breadcrumb">
+						<li>
+							<a href="index.html">Home</a>
+						</li>
+						<li class="active">about me</li>
+					</ol>-->
+				</div>
+				<!-- .page-title end -->
+			</div>
+			<!-- .col-md-12 end -->
+		</div>
+		<!-- .row end -->
+	</div>
+	<!-- .container end -->
+</section>
